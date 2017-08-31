@@ -44,7 +44,7 @@ var myForm = {
         var validation = this.validate();
         if(validation.isValid){
             $('#submitButton').addClass("disabled");
-            ajax_request(url);
+            ajaxRequest(url, 0);
         }
         else {
             validation.errorFields.forEach(function(elem){
@@ -102,21 +102,35 @@ function validPhone(phone){
         myForm.submit();
     });
 
-
-function ajax_request(url){
+//отправляет запрос на сервер 
+function ajaxRequest(url, i){
     $.getJSON( url, function( data ) {
-        console.log('getJson', data)
-        if( data.status == "error" ){
-            $("#resultContainer").addClass("error");
-            $("#resultContainer").text(data.reason);
-        }
-        if( data.status == "success"){
-            $("#resultContainer").addClass("success");
-            $("#resultContainer").text("Success");        
-        }
-        if( data.status == "progress"){
-            $("#resultContainer").addClass("progress");
-            $("#resultContainer").text("in progress, timeout: "+data.timeout+"ms");        
-        }        
+        console.log(i, data)
+        analyzeResponce(data)
     });
+}
+
+//анализует ответ сервара и производит необходимые действия
+function analyzeResponce(data){
+    if( (data.status == "error" || data.status == "success") 
+        && repeatQuery ) {
+            clearTimeout(repeatQuery);
+            $("#resultContainer").removeClass();
+    }
+    if( data.status == "error" ){
+        $("#resultContainer").addClass("error");
+        $("#resultContainer").text(data.reason);
+    }
+    if( data.status == "success"){
+        $("#resultContainer").addClass("success");
+        $("#resultContainer").text("Success");        
+    }
+    if( data.status == "progress"){
+        $("#resultContainer").addClass("progress");
+        $("#resultContainer").text("in progress, timeout: "+data.timeout+"ms");
+        var repeatQuery = setTimeout(function(){
+            i++;
+            ajax_request(url, i);
+        }, data.timeout);
+    }    
 }
