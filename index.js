@@ -42,8 +42,10 @@ var myForm = {
         var url = document.querySelector("form").action;
         
         var validation = this.validate();
+
         if(validation.isValid){
             $('#submitButton').addClass("disabled");
+            $("#submitButton").prop('disabled', true);
             ajaxRequest(url, 0);
         }
         else {
