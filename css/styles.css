@@ -1,0 +1,24 @@
+.page-header span {
+    color: #ff0000;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.success {
+    border: 1px solid green;
+}
+
+.progress {
+    border: 1px solid blue;
+}
+
+#resultContainer {
+        padding: 6px 12px;
+        margin-top: 15px;
+        border-radius: 4px;
+        height: auto;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>YANDEX-ZADANIE</title>
+
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <!--<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>-->
+
+</head>
+<body>
+
+    <div class="container" id="app">
+        <section class="row">
+            <div class="col-sm-4">
+                
+                
+                <h1 class="page-header"><span>Я</span>ндекс <small>задание</small></h1>
+
+                <form action="server/progress.json" id="myForm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+                            <input type="text" class="form-control" name="fio" placeholder="Фамилия Имя Отчество">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </div>
+                            <input type="text" class="form-control" name="email" placeholder="Электронная почта">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-earphone"></i>
+                            </div>
+                            <input type="text" class="form-control" name="phone" placeholder="Телефон">
+                        </div>
+                    </div>
+
+                    <button id="submitButton" type="submit" class="btn btn-info">Submit</button>
+                </form>
+
+                <div id="resultContainer"></div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!--<script src="vue.js" type="text/javascript"></script>-->
+    <script src="index.js"></script>
+</body>
+</html>
