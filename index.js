@@ -102,20 +102,20 @@ function validPhone(phone){
         myForm.submit();
     });
 
-//отправляет запрос на сервер 
+
+//i - number of iteration while we recieve "data.status == progress"
 function ajaxRequest(url, i){
     $.getJSON( url, function( data ) {
         console.log(i, data)
-        analyzeResponce(data)
+        analyzeResponce(data, url, i);
     });
 }
 
-//анализует ответ сервара и производит необходимые действия
-function analyzeResponce(data){
-    if( (data.status == "error" || data.status == "success") 
-        && repeatQuery ) {
-            clearTimeout(repeatQuery);
-            $("#resultContainer").removeClass();
+//url - path which we would send again to server if responce status is "progress"
+//i - iteretion number
+function analyzeResponce(data, url, i) {
+    if( data.status == "error" || data.status == "success"){
+        $("#resultContainer").removeClass("progress");
     }
     if( data.status == "error" ){
         $("#resultContainer").addClass("error");
@@ -130,7 +130,7 @@ function analyzeResponce(data){
         $("#resultContainer").text("in progress, timeout: "+data.timeout+"ms");
         var repeatQuery = setTimeout(function(){
             i++;
-            ajax_request(url, i);
+            ajaxRequest(url, i);
         }, data.timeout);
     }    
 }
